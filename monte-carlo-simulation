@@ -1,0 +1,32 @@
+import numpy as np
+
+def simulate_portfolio_avg_roi(portfolio_size_max=80, n_simulations=100):
+    results = {}
+    for portfolio_size in range(1, portfolio_size_max+1):
+        avg_rois = []
+        for _ in range(n_simulations):
+            roi = 0.0
+            for _ in range(portfolio_size):
+                rand_num = np.random.rand()
+                if rand_num <= 0.27:
+                    roi += 1.5
+                elif 0.27 < rand_num <= 0.63:
+                    roi += 3.5
+                elif 0.63 < rand_num <= 0.90:
+                    roi += 7.5
+                else:
+                    roi += 15.1
+            avg_roi = roi / portfolio_size
+            avg_rois.append(avg_roi)
+        results[portfolio_size] = avg_rois
+    return results
+
+# Run the simulation 93 times
+for _ in range(93):
+    simulation_results = simulate_portfolio_avg_roi()
+
+    # Print the results
+    for portfolio_size, avg_rois in simulation_results.items():
+        avg_roi_mean = np.mean(avg_rois)
+        avg_roi_std = np.std(avg_rois)
+        print(f"{avg_roi_std:.2f}")

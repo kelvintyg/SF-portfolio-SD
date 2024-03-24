@@ -21,8 +21,8 @@ def simulate_portfolio_avg_roi(portfolio_size_max=80, n_simulations=100):
         results[portfolio_size] = avg_rois
     return results
 
-# Run the simulation 93 times
-for _ in range(93):
+# Run the simulation 100 times
+for _ in range(100):
     simulation_results = simulate_portfolio_avg_roi()
 
     # Print the results
